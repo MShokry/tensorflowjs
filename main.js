@@ -29,7 +29,7 @@ async function predict(imgElementx) {
     // Reshape to a single-element batch so we can pass it to predict.
     const batched = normalized.reshape([1, IMAGE_SIZE, IMAGE_SIZE, 3]);
     // Make a prediction through model.
-    return model.predict(batched);
+    return model.predict(batched, { batchSize: 1024, verbose:true});
   });
   const values = await logits.data();
   // console.log(values);
@@ -56,7 +56,7 @@ inputElement.addEventListener('change', (e) => {
 
 let mat;
 imgElement.onload = function () {
-  
+
   let img2 = cv.imread(imgElement);
   let dsize = new cv.Size(IMAGE_SIZE, IMAGE_SIZE);
   let dest = new cv.Mat();
@@ -72,7 +72,6 @@ imgElement.onload = function () {
 const demoStatusElement = document.getElementById('status');
 const status = msg => demoStatusElement.innerText = msg;
 const predictionsElement = document.getElementById('predictions');
-
 
 $(document).ready(function () {
   modelDemo();
