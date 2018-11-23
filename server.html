@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Model Predictions</title>
+  <link rel="stylesheet" href="./static/dash_files/style/style.css" />
+</head>
+<body class="page_upload_body">
+  <div id="loading"></div>
+  <div id="content">
+    <div class="container" id="page_upload">
+      <!-- tensorflowjs_converter --quantization_bytes 1 --input_format=keras ./model.h5 ./tfjsv2 -->
+      <h1>Image classifier demonstration</h1>
+      <h2>Upload an image to be classified</h2>
+      <h2>Simple keras classifier trained on the data</h2>
+      <div id="result_text"> </div>
+      <div class="inputoutput">
+        <img id="imageSrc" alt="No Image Selected" />
+        <div class="caption">imageSrc
+          <input type="file" id="fileInput" name="file">
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvasOutput"></canvas>
+          <div class="caption">canvasOutput</div>
+        </div>
+      </div>
+      <div id="status">OpenCV.js is loading...</div>
+      <div id="predictions"></div>
+    </div>
+  </div>
+
+  <script src="./static/dash_files/js/jquery-1.12.3.min.js"></script>
+  <!-- <script async src="https://docs.opencv.org/master/opencv.js" type="text/javascript"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3/dist/tf.min.js"> </script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script> -->
+  <!-- Local if present -->
+  <script src="./opencv.js" type="text/javascript"></script>
+  <script src="./tf.min.js"></script>
+  <script src="./keras.min.js"></script>
+  <script type="text/javascript">
+    function loading() {
+      $("#loading").show();
+      $("#content").hide();
+    }
+  </script>
+  <script src="./main.js"></script>
+  <style>
+    #videoElement {
+      width: 500px;
+      height: 375px;
+      background-color: #666;
+    }
+  </style>
+
+</html>
